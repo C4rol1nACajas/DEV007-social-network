@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import logoSrc from '../media/logo.png';
 import googleSrc from '../media/btn_google_signin_light_focus_web 2@2x.png';
-import { iniciaSesionConPopup, crearUsuarioConCorreoYContraseña} from '../lib';
+import { iniciaSesionConPopup, crearUsuarioConCorreoYContraseña } from '../lib';
 
 const rootDiv = document.getElementById('root');
 
@@ -63,6 +64,7 @@ export const Register = (onNavigate) => {
         // Signed in
         const user = userCredential.user;
         onNavigate('/');
+        console.log(user);
         // ...
       })
       .catch((error) => {
@@ -106,7 +108,6 @@ export const Register = (onNavigate) => {
         // ...
       });
   });
-
 
   // Append the email input, password input, "Forgot your password?" link,
   // "Next" button, and Google button to the login form

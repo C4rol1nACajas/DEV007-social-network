@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import logoSrc from '../media/logo.png';
 import disclaimerSrc from '../media/disclaimer.png';
 import googleSrc from '../media/btn_google_signin_light_focus_web 2@2x.png';
@@ -6,7 +7,6 @@ import { iniciaSesionConCorreoYContraseña, iniciaSesionConPopup } from '../lib'
 const rootDiv = document.getElementById('root');
 
 // Your web app's Firebase configuration
-
 
 export const Home = (onNavigate) => {
   const buttonLogin = document.createElement('button');
@@ -43,7 +43,7 @@ export const Home = (onNavigate) => {
 
   // Create the paragraphs
   const paragraph1 = document.createElement('p');
-  paragraph1.textContent = 'Here encontrarás un espacio seguro y acogedor para conectarte con personas que comparten tus mismas inquietudes.';
+  paragraph1.textContent = 'Aquí encontrarás un espacio seguro y acogedor para conectarte con personas que comparten tus mismas inquietudes.';
 
   const paragraph2 = document.createElement('p');
   paragraph2.textContent = 'Juntos, exploraremos caminos hacia la salud mental y emocional, brindándonos apoyo mutuo y compartiendo herramientas poderosas.';
@@ -115,6 +115,7 @@ export const Home = (onNavigate) => {
         // Signed in
         const user = userCredential.user;
         onNavigate('/wall');
+        console.log(user);
         // ...
       })
       .catch((error) => {
@@ -153,8 +154,8 @@ export const Home = (onNavigate) => {
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email, credential);
+        // const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email);
         // ...
       });
   });
