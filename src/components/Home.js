@@ -122,7 +122,12 @@ export const Home = (onNavigate) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        if (errorCode === 'auth/invalid-email') alert('Correo incorrecto');
+        if (errorCode === 'auth/missing-password') alert('Escribe tu contraseña');
+        if (errorCode === 'auth/wrong-password') alert('Contraseña incorrecta');
+        if (errorCode === 'auth/user-not-found') alert('Usuario no registrado');
       });
+
   });
 
   // Create the Google button

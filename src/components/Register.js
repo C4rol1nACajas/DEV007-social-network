@@ -71,12 +71,15 @@ export const Register = (onNavigate) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        if (errorCode === 'auth/invalid-email') alert('Correo incorrecto');
+        if (errorCode === 'auth/missing-password') alert('Escribe tu contraseña');
+        if (errorCode === 'auth/weak-password') alert('La contraseña debe tener al menos 6 caracteres');
         // ..
       });
   });
   // Create the Google button
   const googleButton = document.createElement('button');
-  googleButton.className = 'google-button';
+  googleButton.className = 'google-button ';
 
   // Create the Google icon image
   const googleIcon = document.createElement('img');
