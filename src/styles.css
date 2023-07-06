@@ -313,21 +313,25 @@ footer > p {
   font-family: 'Baloo Da 2', cursive;
 }
 
-.post-div > button{
-	background: none;
-	color: inherit;
-	border: none;
-	padding: .5rem;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-}
-
 .buttons-wrapper{
   display: flex;
   justify-content: flex-end;
   padding-top: 1rem;
   gap: .5rem;
+}
+
+.buttons-wrapper > button{
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button > img{
+  width: 20px;
+}
+.button-like:active, .button-like:focus{
+  filter: invert(14%) sepia(41%) saturate(4029%) hue-rotate(349deg) brightness(100%) contrast(91%);
 }
 
 .nav-bar{

@@ -1,8 +1,9 @@
 import homeSrc from '../media/home-icon.svg';
 import profileSrc from '../media/profile-icon.svg';
 import communitiesSrc from '../media/communities-icon.svg';
-import editIcon from '../media/edit-icon.svg';
 import likeIcon from '../media/like-icon.svg';
+import editIcon from '../media/edit-icon.svg';
+import saveIcon from '../media/save.svg';
 import deleteIcon from '../media/delete-icon.svg';
 
 import {
@@ -102,9 +103,6 @@ export const Wall = (onNavigate) => {
   wrapper.appendChild(formPost);
   wrapper.appendChild(navBar);
 
-  const buttonsWrapper = document.createElement('div');
-  buttonsWrapper.className = 'buttons-wrapper';
-
   getPosts().then((posts) => {
     const postOrderer = [];
     posts.forEach((post) => {
@@ -120,6 +118,9 @@ export const Wall = (onNavigate) => {
     postOrderer.sort((a, b) => b.date - a.date);
     // console.log(postOrderer);
     postOrderer.forEach((post) => {
+      const buttonsWrapper = document.createElement('div');
+      buttonsWrapper.className = 'buttons-wrapper';
+
       const postDiv = document.createElement('div');
       postDiv.className = 'post-div';
       const postText = document.createElement('input');
@@ -131,7 +132,9 @@ export const Wall = (onNavigate) => {
 
       const buttonLike = document.createElement('button');
       buttonLike.textContent = `${post.likes.length}`;
-      buttonLike.addEventListener('click', () => {
+      buttonLike.className = 'button-like';
+      buttonLike.addEventListener('click', (e) => {
+        e.preventDefault();
         likePost(post.id, post.likes).then(() => {
           onNavigate('/wall');
         });
@@ -155,13 +158,18 @@ export const Wall = (onNavigate) => {
 
       buttonEdit.appendChild(editIconImg);
 
+      const saveIconImg = document.createElement('img');
+      saveIconImg.src = saveIcon;
+
       const buttonSave = document.createElement('button');
-      buttonSave.textContent = 'Guardar';
+      buttonSave.alt = 'Guardar';
       buttonSave.addEventListener('click', () => {
         updatePost(post.id, postText.value).then(() => {
           onNavigate('/wall');
         });
       });
+
+      buttonSave.appendChild(saveIconImg);
 
       const buttonDeleteImg = document.createElement('img');
       buttonDeleteImg.src = deleteIcon;
@@ -180,6 +188,7 @@ export const Wall = (onNavigate) => {
       buttonsWrapper.appendChild(buttonEdit);
       buttonsWrapper.appendChild(buttonSave);
       buttonsWrapper.appendChild(buttonDelete);
+
       postDiv.appendChild(postText);
       postDiv.appendChild(buttonsWrapper);
 
