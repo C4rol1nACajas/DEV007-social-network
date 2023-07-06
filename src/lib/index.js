@@ -36,6 +36,7 @@ const db = getFirestore(app);
 export function crearUsuarioConCorreoYContraseña(email, contraseña) {
   return createUserWithEmailAndPassword(auth, email, contraseña);
 }
+
 export function iniciaSesionConCorreoYContraseña(email, contraseña) {
   return signInWithEmailAndPassword(auth, email, contraseña);
 }
@@ -46,49 +47,20 @@ export function iniciaSesionConPopup() {
 
 export const emailUsuario = () => auth.currentUser.email;
 
-export const createPost = async (post) => await addDoc(collection(db, 'posts'), {
+export const createPost = (post) => addDoc(collection(db, 'posts'), {
   publication: post,
   date: new Date(),
   likes: [],
 });
 
-export const getPosts = async () => await getDocs(collection(db, 'posts'), orderBy('date', 'desc'));
+export const getPosts = () => getDocs(collection(db, 'posts'), orderBy('date', 'desc'));
 
-export const deletePost = async (id) => await deleteDoc(doc(db, 'posts', id));
-export const updatePost = async (id, post) => await updateDoc(doc(db, 'posts', id), {
+export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
+export const updatePost = (id, post) => updateDoc(doc(db, 'posts', id), {
   publication: post,
 });
-export const likePost = async (id, like) => await updateDoc(doc(db, 'posts', id), {
+export const likePost = (id, like) => updateDoc(doc(db, 'posts', id), {
   likes: [...new Set([...like, auth.currentUser.email])],
 });
-
-// const querySnapshot = await getDocs(collection(db, "post"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
-
-// export function rederPost() {
-//   getDocs(collection(db, 'posts')).then((querySnapshot) => {
-//     if (querySnapshot.empty) {
-//       console.log('No hay documentos');
-//       return;
-//     }
-//     console.log(`Número de documentos: ${querySnapshot.size}`);
-//     querySnapshot.forEach((doc) => {
-//       const postId = doc.id;
-//       const post = doc.data().publication;
-//       console.log(`ID: ${postId}, Publicación: ${post}`);
-//     });
-//   });
-// }
-
-// try {
-//   const docRef = await addDoc(collection(db, "posts"), {
-//     publication: post,
-//   });
-//   console.log("Document written with ID: ", docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
 
 console.log(app);

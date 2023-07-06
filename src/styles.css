@@ -346,6 +346,16 @@ button > img{
   padding: 1rem;
 }
 
+.nav-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.logo-text-container{
+  display: none;
+}
+
 @media (min-width: 768px) {
 
   .wrapper{
@@ -398,3 +408,34 @@ button > img{
     color: #FFFFFF;
   }
 }
+
+.nav-bar{
+  top: 0;
+  height: 10%;
+  justify-content: space-between;
+}
+
+.nav-wrapper{
+  width: 30%;
+  align-items: center;
+}
+
+.logo-text-container{
+  display: flex;
+}
+
+.form-post{
+  margin-top: 6rem;
+  width: 60%;
+  box-sizing: content-box;
+}
+
+.input-post{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#post-container{
+  width: 60%;
+}
+

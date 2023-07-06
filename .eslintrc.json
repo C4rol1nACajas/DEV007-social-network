@@ -18,6 +18,8 @@
     "sourceType": "module"
   },
   "rules": {
+    // "no-console": "off",
+    // "no-alert": "off",
     "linebreak-style": 0,
     "prefer-destructuring": 0,
     "no-param-reassign": ["error", { "props": false }],

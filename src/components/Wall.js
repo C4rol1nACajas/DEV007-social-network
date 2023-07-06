@@ -1,10 +1,4 @@
-import homeSrc from '../media/home-icon.svg';
-import profileSrc from '../media/profile-icon.svg';
-import communitiesSrc from '../media/communities-icon.svg';
-import likeIcon from '../media/like-icon.svg';
-import editIcon from '../media/edit-icon.svg';
-import saveIcon from '../media/save.svg';
-import deleteIcon from '../media/delete-icon.svg';
+// import { doc } from 'firebase/firestore';
 
 import {
   createPost,
@@ -14,6 +8,15 @@ import {
   likePost,
   // emailUsuario,
 } from '../lib';
+
+import homeSrc from '../media/home-icon.svg';
+import profileSrc from '../media/profile-icon.svg';
+import communitiesSrc from '../media/communities-icon.svg';
+import likeIcon from '../media/like-icon.svg';
+import editIcon from '../media/edit-icon.svg';
+import saveIcon from '../media/save.svg';
+import deleteIcon from '../media/delete-icon.svg';
+import logoTextImg from '../media/logo-text.svg';
 
 export const Wall = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -96,9 +99,24 @@ export const Wall = (onNavigate) => {
 
   communitiesIconContainer.appendChild(communitiesIcon);
 
-  navBar.appendChild(profileIconContainer);
-  navBar.appendChild(homeIconContainer);
-  navBar.appendChild(communitiesIconContainer);
+  const logoTextContainer = document.createElement('picture');
+  logoTextContainer.className = 'logo-text-container';
+
+  const logoTextIcon = document.createElement('img');
+  logoTextIcon.src = logoTextImg;
+  logoTextIcon.className = 'logo-text-img';
+
+  logoTextContainer.appendChild(logoTextIcon);
+
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'nav-wrapper';
+
+  navWrapper.appendChild(profileIconContainer);
+  navWrapper.appendChild(homeIconContainer);
+  navWrapper.appendChild(communitiesIconContainer);
+
+  navBar.appendChild(navWrapper);
+  navBar.appendChild(logoTextContainer);
 
   wrapper.appendChild(formPost);
   wrapper.appendChild(navBar);

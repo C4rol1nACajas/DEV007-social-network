@@ -15,7 +15,7 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage",
+    "test": "jest --verbose --coverage --detectOpenHandles",
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.2",
-    "firebase": "^9.23.0"
+    "firebase": "^9.23.0",
+    "firebase-admin": "^11.9.0"
   }
 }
