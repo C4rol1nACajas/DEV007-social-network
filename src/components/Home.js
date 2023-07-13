@@ -1,5 +1,5 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import { iniciaSesionConCorreoYContraseña, iniciaSesionConPopup } from '../lib';
+import { emailUsuario, iniciaSesionConCorreoYContraseña, iniciaSesionConPopup } from '../lib';
 import { showMessage } from './Modal';
 import logoSrc from '../media/logo.png';
 import disclaimerSrc from '../media/disclaimer.png';
@@ -7,9 +7,10 @@ import disclaimerSrc from '../media/disclaimer.png';
 // Your web app's Firebase configuration
 
 export const Home = (onNavigate) => {
-  const buttonLogin = document.createElement('button');
-  buttonLogin.textContent = 'Inicia sesión';
-  buttonLogin.addEventListener('click', () => onNavigate('/register'));
+  console.log(emailUsuario);
+  // const buttonLogin = document.createElement('button');
+  // buttonLogin.textContent = 'Inicia sesión';
+  // buttonLogin.addEventListener('click', () => onNavigate('/register'));
 
   // create the main wrapper that includes the logo and the container
   // for the introductory text and the form
@@ -123,10 +124,15 @@ export const Home = (onNavigate) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage, 'error custom');
-        if (errorCode === 'auth/invalid-email') showMessage('Correo incorrecto');
-        if (errorCode === 'auth/missing-password') showMessage('Escribe tu contraseña');
-        if (errorCode === 'auth/wrong-password') showMessage('Contraseña incorrecta');
-        if (errorCode === 'auth/user-not-found') showMessage('Usuario no registrado');
+        console.log('email y password', emailInput.value, passwordInput.value);
+        if (emailInput.value === '' || passwordInput.value === '') {
+          showMessage('Por favor, llena todos los campos');
+        } else {
+          if (errorCode === 'auth/invalid-email') showMessage('Correo incorrecto');
+          if (errorCode === 'auth/invalid-password') showMessage('Escribe tu contraseña');
+          if (errorCode === 'auth/wrong-password') showMessage('Contraseña incorrecta');
+          if (errorCode === 'auth/user-not-found') showMessage('Usuario no registrado');
+        }
       });
   });
 

@@ -445,7 +445,7 @@ footer > p {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  position: absolute;
+  position: fixed;
   z-index: 20;
   top: 40%;
   right: 50%;

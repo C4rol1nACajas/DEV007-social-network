@@ -39,11 +39,9 @@ export function iniciaSesionConCorreoYContraseña(email, contraseña) {
   return signInWithEmailAndPassword(auth, email, contraseña);
 }
 
-export function iniciaSesionConPopup() {
-  return signInWithPopup(auth, provider);
-}
+export const iniciaSesionConPopup = async () => signInWithPopup(auth, provider);
 
-export const emailUsuario = () => auth.currentUser.email;
+export const emailUsuario = async () => auth.currentUser.email;
 
 export const createPost = async (post) => addDoc(collection(db, 'posts'), {
   publication: post,
